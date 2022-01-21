@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/josh/Documents/VSCode/C++/3DRenderingTest'
+make: Leaving directory '/home/josh/Documents/VSCode/C++/3DRenderingTest'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+ 
