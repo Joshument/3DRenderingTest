@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/3DRenderingTest.dir/src/main.cpp.o CMakeFiles/3DRenderingTest.dir/src/glad.c.o CMakeFiles/3DRenderingTest.dir/src/shader.cpp.o CMakeFiles/3DRenderingTest.dir/src/stb_image.cpp.o -o 3DRenderingTest   -L/home/josh/Documents/VSCode/C++/3DRenderingTest/lib  -Wl,-rpath,/home/josh/Documents/VSCode/C++/3DRenderingTest/lib -lglfw3 -lX11 
