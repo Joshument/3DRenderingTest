@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jan 21 14:56:20 2022
+# Make data base, printed on Sat Jan 22 18:06:32 2022
 
 # Variables
 
@@ -19,7 +19,7 @@ NO_AT_BRIDGE = 1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-020f8da8-c8c9-456c-bc7c-94785cd634fb.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1001/vscode-ipc-d589359c-f53d-4e47-879e-220b35c16f90.sock
 # environment
 VSCODE_CWD = /home/josh
 # environment
@@ -99,13 +99,13 @@ MAKEFILE_LIST :=
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3090
+VSCODE_PID = 2767
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1766,unix/unix:/tmp/.ICE-unix/1766
+SESSION_MANAGER = local/unix:@/tmp/.ICE-unix/1795,unix/unix:/tmp/.ICE-unix/1795
 # automatic
 *F = $(notdir $*)
 # environment
@@ -143,7 +143,7 @@ MAKEFILES :=
 # automatic
 ^F = $(notdir $^)
 # environment
-INVOCATION_ID = f1f6768c1ea74b09ba4e63dd7f41d67f
+INVOCATION_ID = 4733ab7208774e7c974a466ca6bda3c1
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
@@ -167,7 +167,7 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 1795
+SYSTEMD_EXEC_PID = 1820
 # environment
 HISTCONTROL = ignoredups
 # environment
@@ -179,21 +179,21 @@ USER = josh
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1559
+MANAGERPID = 1595
 # environment
 which_declare = declare -f
 # environment
 DEBUGINFOD_URLS = https://debuginfod.fedoraproject.org/ https://debuginfod.fedoraproject.org/
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3090
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2767
 # environment
-SSH_AGENT_PID = 1705
+SSH_AGENT_PID = 1732
 # environment
 _ = /usr/bin/make
 # environment
 XDG_RUNTIME_DIR = /run/user/1001
 # environment
-JOURNAL_STREAM = 8:32532
+JOURNAL_STREAM = 8:31399
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -227,9 +227,9 @@ GDMSESSION = gnome-xorg
 
 # Directories
 
-# . (device 39, inode 736322): 10 files, no impossibilities.
+# . (device 39, inode 736322): 15 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -279,15 +279,15 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 150 B / avg = 8 B
-# current buf: size = 8162 B / used = 150 B / count = 18 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 23 / storage = 200 B / avg = 8 B
+# current buf: size = 8162 B / used = 200 B / count = 23 / avg = 8 B
 
  
 make: *** No rule to make target 'all'.  Stop.
  
-# strcache performance: lookups = 21 / hit rate = 14%
+# strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=0/21=0%
-# Finished Make data base on Fri Jan 21 14:56:20 2022
+# Load=23/8192=0%, Rehash=0, Collisions=0/26=0%
+# Finished Make data base on Sat Jan 22 18:06:32 2022
 
  

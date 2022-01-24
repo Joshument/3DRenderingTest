@@ -7,9 +7,13 @@
 
 #include <shader.hpp>
 #include <camera.hpp>
+#include <PerlinNoise.hpp>
 
 #include <iostream>
 #include <cmath>
+#include <array>
+
+constexpr int gridSize = 100;
 
 int windowWidth = 1920;
 int windowHeight = 1080;
@@ -125,19 +129,6 @@ int main() {
         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
         -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
-
-    glm::vec3 cubePositions[] = {
-        glm::vec3( 0.0f,  0.0f,  0.0f), 
-        glm::vec3( 2.0f,  5.0f, -15.0f), 
-        glm::vec3(-1.5f, -2.2f, -2.5f),  
-        glm::vec3(-3.8f, -2.0f, -12.3f),  
-        glm::vec3( 2.4f, -0.4f, -3.5f),  
-        glm::vec3(-1.7f,  3.0f, -7.5f),  
-        glm::vec3( 1.3f, -2.0f, -2.5f),  
-        glm::vec3( 1.5f,  2.0f, -2.5f), 
-        glm::vec3( 1.5f,  0.2f, -1.5f), 
-        glm::vec3(-1.3f,  1.0f, -1.5f)
     };
 
     int indices[] {
@@ -308,6 +299,22 @@ int main() {
                                 cameraTarget,
                                 cameraUp); */
 
+    const siv::PerlinNoise::seed_type seed = glfwGetTime();
+    const siv::PerlinNoise perlin{ seed };
+
+    std::array<std::array<std::array<bool, gridSize>, gridSize>, gridSize> cubePositions {};
+    for(float posX = 0.5f; posX < gridSize; ++posX) {
+        for(float posY = 0.5f; posY < gridSize; ++posY) {
+            for(float posZ = 0.5f; posZ < gridSize; ++posZ) {
+                if(perlin.noise3D(posX, posY, posZ) > 0.2) {
+                    cubePositions[posX][posY][posZ] = true;
+                } else {
+                    cubePositions[posX][posY][posZ] = false;
+                }
+            }
+        } 
+    }
+
     while(!glfwWindowShouldClose(window))
     {
         float currentFrame = glfwGetTime();
@@ -347,17 +354,20 @@ int main() {
 
         glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(float) * 5); 
         */
-
-        for(int i = 0; i < 10; ++i) {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            float angle = 20.0f * i; 
-            model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f));
-            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-            shader.setMat4("model", model);
-
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+        for(float posX = 0.5f; posX < gridSize; ++posX) {
+            for(float posY = 0.5f; posY < gridSize; ++posY) {
+                for(float posZ = 0.5f; posZ < gridSize; ++posZ) {
+                    if(cubePositions[posX][posY][posZ]) {
+                        glm::mat4 model = glm::mat4(1.0f);
+                        model = glm::translate(model, glm::vec3(posX, posY, posZ));
+                        shader.setMat4("model", model);
+                        glDrawArrays(GL_TRIANGLES, 0, 36);
+                    }
+                }
+            } 
         }
+        // model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f));
+        // model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
 
         // If any errors occur, they'll be printed at this step.
         for (int i = glGetError(); i != 0; i = glGetError()) {
