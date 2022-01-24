@@ -6,15 +6,21 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <shader.hpp>
+#include <camera.hpp>
 
 #include <iostream>
 #include <cmath>
 
-int windowWidth = 800;
-int windowHeight = 600;
+int windowWidth = 1920;
+int windowHeight = 1080;
 
-float mixValue = 0.0f;
-glm::vec3 moveOffset = glm::vec3(0.0f, 0.0f, 0.0f);
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
+
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+
+float yaw = -90.0f;
+float pitch = 0.0f;
 
 void framebufferSizeCallback(GLFWwindow* window, int newWidth, int newHeight)
 {
@@ -23,24 +29,42 @@ void framebufferSizeCallback(GLFWwindow* window, int newWidth, int newHeight)
     glViewport(0, 0, windowWidth, windowHeight);
 }  
 
-void processInput(GLFWwindow* window, Shader shader) {
+void mouseCallback(GLFWwindow* window, double xposIn, double yposIn) {
+    static float lastX = windowWidth / 2;
+    static float lastY = windowHeight / 2;
+    static bool firstMouse = true;
 
-    if(glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        moveOffset += glm::vec3(0.0f, 0.05f, 0.0f);
-        shader.setFloat("mixValue", mixValue);
-    } 
-    if(glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        moveOffset += glm::vec3(0.0f, -0.05f, 0.0f);;
-        shader.setFloat("mixValue", mixValue);
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
     }
-    if(glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        moveOffset += glm::vec3(0.05f, 0.0f, 0.0f);
-        shader.setFloat("mixValue", mixValue);
-    } 
-    if(glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        moveOffset += glm::vec3(-0.05f, 0.0f, 0.0f);
-        shader.setFloat("mixValue", mixValue);
-    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+    lastX = xpos;
+    lastY = ypos;
+
+    camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+void processInput(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        camera.ProcessKeyboard(FORWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        camera.ProcessKeyboard(BACKWARD, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        camera.ProcessKeyboard(LEFT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        camera.ProcessKeyboard(RIGHT, deltaTime);
 }
 
 void MessageCallback(
@@ -59,7 +83,6 @@ void MessageCallback(
 }
 
 int main() {
-
     float vertices[] = {
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -150,9 +173,11 @@ int main() {
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
     glDebugMessageCallback(MessageCallback, 0);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);  
     // Create viewport & tell glfw what to do when window size changes
     glViewport(0, 0, windowWidth, windowHeight);    
     glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetCursorPosCallback(window, mouseCallback);
 
     Shader shader("/home/josh/Documents/VSCode/C++/3DRenderingTest/shaders/vertex.glsl", "/home/josh/Documents/VSCode/C++/3DRenderingTest/shaders/fragment.glsl");
 
@@ -285,8 +310,12 @@ int main() {
 
     while(!glfwWindowShouldClose(window))
     {
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame; 
+
         // Check for input
-        // processInput(window, shader);
+        processInput(window);
 
         // Clear buffer
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -303,12 +332,7 @@ int main() {
         glBindTexture(GL_TEXTURE_2D, texture1);
 
         // Set up matrices
-        const float radius = 10.0f;
-        float camX = sin(glfwGetTime()) * radius;
-        float camY = sin(glfwGetTime()) * radius;
-        float camZ = cos(glfwGetTime()) * radius;
-        glm::mat4 view;
-        view = glm::lookAt(glm::vec3(camX, camY, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));  
+        glm::mat4 view = camera.GetViewMatrix();
         shader.setMat4("view", view);
 
         glm::mat4 projection;

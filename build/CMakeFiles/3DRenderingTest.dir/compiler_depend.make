@@ -493,7 +493,13 @@ CMakeFiles/3DRenderingTest.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/fstream.tcc \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc \
-  /usr/include/c++/11/iostream
+  /usr/include/c++/11/iostream \
+  ../include/camera.hpp \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc
 
 CMakeFiles/3DRenderingTest.dir/src/shader.cpp.o: ../src/shader.cpp \
   /usr/include/stdc-predef.h \
@@ -1052,6 +1058,14 @@ CMakeFiles/3DRenderingTest.dir/src/stb_image.cpp.o: ../src/stb_image.cpp \
 
 /usr/lib/gcc/x86_64-redhat-linux/11/include/mmintrin.h:
 
+/usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/c++/11/bits/stl_uninitialized.h:
+
+/usr/include/c++/11/vector:
+
 /usr/include/c++/11/iostream:
 
 /usr/include/c++/11/sstream:
@@ -1195,6 +1209,8 @@ CMakeFiles/3DRenderingTest.dir/src/stb_image.cpp.o: ../src/stb_image.cpp \
 ../include/glm/ext/quaternion_double.hpp:
 
 /usr/include/c++/11/math.h:
+
+../include/camera.hpp:
 
 ../include/glm/ext/quaternion_float_precision.hpp:
 
@@ -1577,6 +1593,8 @@ CMakeFiles/3DRenderingTest.dir/src/stb_image.cpp.o: ../src/stb_image.cpp \
 ../include/glm/detail/type_mat2x2.inl:
 
 /usr/include/bits/types/struct_timeval.h:
+
+/usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/cstddef:
 

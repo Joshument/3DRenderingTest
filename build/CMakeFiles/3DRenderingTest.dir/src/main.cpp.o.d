@@ -350,4 +350,9 @@ CMakeFiles/3DRenderingTest.dir/src/main.cpp.o: \
  /usr/include/c++/11/x86_64-redhat-linux/bits/basic_file.h \
  /usr/include/c++/11/x86_64-redhat-linux/bits/c++io.h \
  /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/sstream \
- /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/iostream
+ /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/iostream \
+ /home/josh/Documents/VSCode/C++/3DRenderingTest/include/camera.hpp \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc

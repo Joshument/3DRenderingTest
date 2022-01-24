@@ -156,6 +156,13 @@
 				2,
 				3
 			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				4
+			]
 		}
 	],
 	"sources" : 
@@ -183,6 +190,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/stb_image.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/camera.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
