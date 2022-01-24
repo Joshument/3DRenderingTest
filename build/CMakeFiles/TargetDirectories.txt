@@ -1,5 +1,0 @@
-/home/josh/Documents/VSCode/C++/3DRenderingTest/build/CMakeFiles/3DRenderingTest.dir
-/home/josh/Documents/VSCode/C++/3DRenderingTest/build/CMakeFiles/package.dir
-/home/josh/Documents/VSCode/C++/3DRenderingTest/build/CMakeFiles/package_source.dir
-/home/josh/Documents/VSCode/C++/3DRenderingTest/build/CMakeFiles/edit_cache.dir
-/home/josh/Documents/VSCode/C++/3DRenderingTest/build/CMakeFiles/rebuild_cache.dir
